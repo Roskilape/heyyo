@@ -1,3 +1,4 @@
+import { ScreenContent } from '../components/ScreenContent';
 import { StatusBar } from 'expo-status-bar';
 import {Stack} from "expo-router"
 
@@ -9,6 +10,7 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <Stack screenOptions={{headerShown: false}}>
         <Stack.Screen name='(auth)' />
+        <Stack.Screen name='(tabs)' />
       </Stack>
       <StatusBar style="auto" />
     </SafeAreaProvider>
