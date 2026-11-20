@@ -6,7 +6,11 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 export const connectDB = async () => {
 	try {
-		const conn = await mongoose.connect(process.env.MONGO_URI as string);
+		const mongoURI = process.env.MONGO_URI as string;
+		if (!mongoURI) {
+			throw new Error("MONGO_URI is not defined in environment variables");
+		}
+		const conn = await mongoose.connect(mongoURI);
 		console.log(`Database connected ${conn.connection.host}`);
 	} catch (error) {
 		console.log("Error connecting to database", error);
