@@ -21,7 +21,7 @@ export const protectRoute = async (
 		req.userId = user._id.toString();
 		next();
 	} catch (err) {
-		console.error(err);
-		res.status(500).json({ message: "Internal server error" });
+		res.status(500);
+		next(err);
 	}
 };
