@@ -18,8 +18,7 @@ export const getMe = async (
 
 		res.json({ user });
 	} catch (error) {
-		res.status(500).json({ message: "Internal server error" });
-		next();
+		next(error);
 	}
 };
 
@@ -48,7 +47,6 @@ export const authCallback = async (
 			});
 		}
 	} catch (error) {
-		res.status(500).json({ message: "Internal server error" });
 		next(error);
 	}
 };
