@@ -1,6 +1,7 @@
 import type { NextFunction, Response } from "express";
 import type { AuthRequest } from "../middleware/auth";
 import { Chat } from "../models/Chat.model";
+import { Types } from "mongoose";
 
 export async function getChats(
 	req: AuthRequest,
@@ -47,6 +48,16 @@ export async function getOrCreateChat(
 		const userId = req.userId;
 		const { participantId } = req.params;
 
+		if (!participantId) {
+			return res.status(400).json({ message: "Participant ID is required" });
+		}
+
+		if (participantId === userId) {
+			return res
+				.status(400)
+				.json({ message: "Cannot create chat with yourself" });
+		}
+
 		let chat = await Chat.findOne({
 			participants: { $all: [userId, participantId] },
 		})
@@ -69,6 +80,7 @@ export async function getOrCreateChat(
 			lastMessage: chat.lastMessage,
 			lastMessageAt: chat.lastMessageAt,
 			createdAt: chat.createdAt,
+			updatedAt: chat.updatedAt,
 		});
 	} catch (error) {
 		res.status(500);
