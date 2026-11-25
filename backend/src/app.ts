@@ -7,6 +7,8 @@ import { clerkMiddleware } from "@clerk/express";
 import { errorHandler } from "./middleware/errorHandler";
 const app = express();
 
+app.get("/", (_req, res) => res.send("hello from server"));
+
 app.get("/health", (req, res) => {
 	res.json({ status: "ok", message: "Server is running" });
 });
