@@ -15,7 +15,7 @@ export async function getMessages(
 			return res.status(400).json({ message: "Invalid chat ID" });
 		}
 
-		const chat = Chat.findOne({
+		const chat = await Chat.findOne({
 			_id: chatId,
 			participants: userId,
 		});
