@@ -19,6 +19,7 @@
   "dependencies": {
     "@clerk/express": "^2.1.94",
     "cors": "^2.8.6",
+    "cron": "^4.4.2",
     "express": "^5.3.0",
     "express-async-handler": "^1.2.0",
     "mongoose": "^9.12.2",
