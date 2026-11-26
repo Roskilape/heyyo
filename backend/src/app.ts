@@ -7,8 +7,6 @@ import { clerkMiddleware } from "@clerk/express";
 import { errorHandler } from "./middleware/errorHandler";
 const app = express();
 
-app.get("/", (_req, res) => res.send("hello from server"));
-
 app.get("/health", (req, res) => {
 	res.json({ status: "ok", message: "Server is running" });
 });
@@ -19,6 +17,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/chats", chatRoutes);
+app.use("/api", (_req, res) => res.status(404).json({ message: "Not found" }));
 
 app.use(errorHandler);
 

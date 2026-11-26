@@ -1,6 +1,7 @@
 {
   "name": "my-expo-app",
   "version": "1.0.0",
+  "packageManager": "bun@1.4.4",
   "scripts": {
     "android": "expo start --android",
     "ios": "expo start --ios",
